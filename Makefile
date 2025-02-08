@@ -11,7 +11,7 @@ PKG_ABI_VERSION:=$(call abi_version_str,$(PKG_VERSION))
 
 PKG_MAINTAINER:=Daniel Golle <daniel@makrotopia.org>
 
-PKG_BUILD_FLAGS:=no-lto no-mold
+PKG_BUILD_FLAGS:=no-gc-sections no-lto no-mold
 PKG_BUILD_DEPENDS:=bpf-headers
 PKG_FLAGS:=nonshared
 
