@@ -1,0 +1,33 @@
+--- a/lib/common.mk
++++ b/lib/common.mk
+@@ -117,7 +117,7 @@ $(XDP_OBJ): %.o: %.c $(KERN_USER_H) $(EX
+ 	    -Wno-compare-distinct-pointer-types \
+ 	    -Werror \
+ 	    $(BPF_CFLAGS) \
+-	    -O2 -emit-llvm -c -g -o ${@:.o=.ll} $<
++	    -O2 -emit-llvm -g -o ${@:.o=.ll} $<
+ 	$(QUIET_LLC)$(LLC) -march=$(BPF_TARGET) -filetype=obj -o $@ ${@:.o=.ll}
+ 
+ $(BPF_SKEL_H): %.skel.h: %.bpf.o
+--- a/lib/libxdp/Makefile
++++ b/lib/libxdp/Makefile
+@@ -144,7 +144,7 @@ $(XDP_OBJS): %.o: %.c $(BPF_HEADERS) $(L
+ 	    -Wno-compare-distinct-pointer-types \
+ 	    -Werror \
+ 	    $(BPF_CFLAGS) \
+-	    -O2 -emit-llvm -c -g -o ${@:.o=.ll} $<
++	    -O2 -emit-llvm -g -o ${@:.o=.ll} $<
+ 	$(QUIET_LLC)$(LLC) -march=$(BPF_TARGET) -filetype=obj -o $@ ${@:.o=.ll}
+ 
+ .PHONY: man
+--- a/lib/util/Makefile
++++ b/lib/util/Makefile
+@@ -27,7 +27,7 @@ $(UTIL_BPF_OBJS): %.o: %.c $(KERN_USER_H
+ 	    -Wno-pointer-sign \
+ 	    -Wno-compare-distinct-pointer-types \
+ 	    -Werror \
+-	    -O2 -emit-llvm -c -g -o ${@:.o=.ll} $<
++	    -O2 -emit-llvm -g -o ${@:.o=.ll} $<
+ 	$(QUIET_LLC)$(LLC) -march=$(BPF_TARGET) -filetype=obj -o $@ ${@:.o=.ll}
+ 
+ $(UTIL_SKEL_H): %.skel.h: %.bpf.o
